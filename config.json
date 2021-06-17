@@ -1,0 +1,8 @@
+{
+  "debug" : {
+    "level" : "debug"
+  },
+  "server": {
+    "port": 3000
+  }
+}

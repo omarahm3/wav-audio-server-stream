@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head') %>
+<body class="container">
+
+  <div class="jumbotron">
+    <h1 class="display-4">Record and stream your voice</h1>
+
+    <button id="start-recording" type="button" style="margin-top: 10px;" class="btn btn-primary btn-lg">
+      Start
+    </button>
+
+    <button id="stop-recording" type="button" style="margin-top: 10px;" class="btn btn-warning btn-lg" disabled>
+      Stop
+    </button>
+  </div>
+
+
+  <%- include('./partials/footer') %>
+
+  <script src="./scripts/init.js"></script>
+  <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+  <script src="./scripts/recorder.js"></script>
+</body>
+</html>
+
