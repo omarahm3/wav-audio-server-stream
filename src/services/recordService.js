@@ -1,6 +1,5 @@
 const fs      = require('fs')
 const path    = require('path')
-const wav     = require('wav')
 const logger  = require('./logger')
 let count     = 0
 
@@ -14,8 +13,15 @@ const handleStartRecording = (clientId, { record, client }, clientsBlobs) => {
   clientsBlobs[clientId].client   = client
   clientsBlobs[clientId].started  = true
 
+  const directory = path.join(__dirname, `../../public/records/${record}/`)
+
+  if (!fs.existsSync(directory)){
+    fs.mkdirSync(directory);
+  }
+
+  count = 0
   // Now create an empty record file
-  fs.openSync(path.join(__dirname, `../../public/records/${record}.wav`), 'w')
+  fs.openSync(path.join(__dirname, `../../public/records/${record}/${record}${count}.wav`), 'w')
 }
 
 const handleStopRecording = (clientId, clientsBlobs) => {
@@ -28,14 +34,8 @@ const handleStopRecording = (clientId, clientsBlobs) => {
 }
 
 const handleRecording = (client, blob) => {
-  const fileName    = path.join(__dirname, `../../public/records/${client.record}${count}.wav`)
-  const fileWriter  = new wav.FileWriter(fileName, {
-    channels: 1,
-    sampleRate: 44100,
-    bitDepth: 16
-  })
-
-  fileWriter.write(blob)
+  const fileName    = path.join(__dirname, `../../public/records/${client.record}/${client.record}${count}.wav`)
+  fs.appendFileSync(fileName, blob)
   count++
 }
 

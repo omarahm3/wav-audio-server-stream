@@ -1,3 +1,4 @@
 node_modules
 logs
 yarn-error.log
+public/records
