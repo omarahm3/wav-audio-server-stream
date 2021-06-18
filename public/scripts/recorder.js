@@ -68,7 +68,7 @@ const onStartRecording = () => {
   state.buttons.stopRecordingButton.disabled  = false
 
   // Start recording
-  navigator.getUserMedia({ audio: true, video: false }).then(onRecordingStream);
+  navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then(onRecordingStream);
 }
 
 const onStopRecording = () => {
